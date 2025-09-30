@@ -1,0 +1,2 @@
+# N8N_Criando_um_assistente_financeiro_com_o_Supabase
+
