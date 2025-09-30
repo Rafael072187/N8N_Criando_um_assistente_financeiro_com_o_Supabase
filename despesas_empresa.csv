@@ -1,0 +1,51 @@
+ordem_de_compra,data_despesa,categoria,fornecedor,metodo_pagamento,valor
+1205,2024-12-01,Transporte,Empresa Tech,Cartao de Credito,621
+9814,2025-05-10,Marketing,Expresso Analytics,Boleto,4588
+9239,2024-11-05,Transporte,Expresso Analytics,Cartao de Credito,605
+9750,2024-12-16,Transporte,Solux Tecnologia,Boleto,4544
+9114,2025-10-09,Transporte,Solux Tecnologia,Boleto,4699
+8209,2024-11-16,Transporte,Empresa Tech,Cartao de Debito,4582
+2164,2025-03-31,Tecnologia,Empresa Tech,Pix,2886
+720247,2025-06-07,Marketing,Solux Tecnologia,Pix,4930
+5179,2024-09-28,Tecnologia,Solux Tecnologia,Boleto,3464
+8048,2025-07-28,Alimentacao,Solux Tecnologia,Pix,1102
+8536,2025-08-01,Transporte,Empresa Tech,Pix,2208
+3771,2025-06-14,Alimentacao,Empresa Tech,Cartao de Debito,1074
+5721,2025-05-15,Alimentacao,Empresa Tech,Cartao de Credito,1091
+8927,2024-12-19,Operacional,Expresso Analytics,Pix,192
+5263,2025-08-01,Operacional,Expresso Analytics,Pix,2849
+6007,2025-08-29,Alimentacao,Empresa Tech,Cartao de Credito,265
+9568,2025-04-05,Tecnologia,Solux Tecnologia,Pix,187
+3716,2024-11-01,Tecnologia,Prime Solutions,Cartao de Debito,616
+6281,2024-11-19,Operacional,Solux Tecnologia,Pix,2024
+432024,2025-01-27,Alimentacao,Expresso Analytics,Boleto,4601
+1142,2024-12-27,Marketing,Prime Solutions,Cartao de Credito,812
+9792,2025-06-28,Tecnologia,Solux Tecnologia,Pix,3575
+5523,2025-05-15,Operacional,Expresso Analytics,Cartao de Credito,3301
+2910,2024-12-10,Alimentacao,Prime Solutions,Cartao de Credito,3952
+9747,2025-05-10,Transporte,Prime Solutions,Cartao de Credito,1715
+3883,2025-10-07,Alimentacao,Expresso Analytics,Cartao de Credito,4090
+8061,2025-01-31,Marketing,Prime Solutions,Pix,2059
+7647,2024-12-17,Tecnologia,Empresa Tech,Cartao de Debito,3856
+1084,2025-02-23,Alimentacao,Expresso Analytics,Cartao de Debito,4717
+9001,2025-05-05,Marketing,Expresso Analytics,Cartao de Debito,4789
+1412,2024-12-22,Tecnologia,Prime Solutions,Boleto,2993
+1902,2024-12-10,Tecnologia,Expresso Analytics,Boleto,1991
+5533,2025-06-29,Operacional,Expresso Analytics,Cartao de Credito,4540
+6701,2025-04-03,Transporte,Expresso Analytics,Cartao de Credito,570
+8715,2025-01-21,Operacional,Empresa Tech,Cartao de Credito,419
+6011,2024-12-20,Operacional,Expresso Analytics,Cartao de Credito,1281
+1397,2025-06-28,Tecnologia,Solux Tecnologia,Pix,2819
+9316,2025-06-13,Operacional,Expresso Analytics,Cartao de Debito,2703
+1875,2025-01-26,Alimentacao,Expresso Analytics,Boleto,1208
+9984,2025-03-18,Tecnologia,Solux Tecnologia,Cartao de Debito,3804
+5793,2024-11-02,Marketing,Prime Solutions,Cartao de Credito,2212
+2151,2025-05-15,Alimentacao,Expresso Analytics,Cartao de Debito,2679
+4417,2025-06-09,Transporte,Expresso Analytics,Cartao de Credito,1316
+6530,2024-09-02,Operacional,Empresa Tech,Cartao de Debito,1162
+8449,2024-11-26,Transporte,Solux Tecnologia,Pix,4293
+2277,2025-05-17,Alimentacao,Prime Solutions,Cartao de Credito,3649
+6154,2025-08-12,Transporte,Empresa Tech,Pix,202488
+8661,2025-04-11,Alimentacao,Solux Tecnologia,Cartao de Credito,807
+6483,2025-08-31,Alimentacao,Expresso Analytics,Cartao de Credito,4191
+1502,2025-05-14,Tecnologia,Empresa Tech,Cartao de Credito,4052

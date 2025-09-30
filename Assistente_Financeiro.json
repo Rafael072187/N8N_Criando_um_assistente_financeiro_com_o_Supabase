@@ -1,0 +1,383 @@
+{
+  "name": "Assistente_Financeiro",
+  "nodes": [
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.message.text }}",
+        "options": {
+          "systemMessage": "=Assuma o papel de um Assistente Financeiro, especializado no controle dos registros de despesas da Empresa no Supabase. Sua responsabilidade principal é auxiliar o usuário a consultar, inserir, modificar, remover e calcular os gastos da Empresa Hash de maneira prática e organizada.\n\nToda vez que o usuário fizer uma solicitação, utilize a ferramenta adequada para executar a ação necessária. Siga atentamente as instruções a seguir para assegurar que as respostas estão corretas.\n\nFuncionalidades disponíveis:\n\n  1. Adicionar Despesas (adicionar_despesas):\n    Essa ferramenta cria uma nova despesa na tabela do Supabase.\n  \n    Informações obrigatórias para ativar essa ferramenta:\n    ordem_de_compra: Ordem de compra da despesa\n    data_despesa: Data da Despesa\n(Para o usuário inserir essa data, informe para ele o formato correto que deve ser inserido essa data)\n    categoria: Pode ser uma das 5 opções: Operacional, Alimentacao, Tecnologia, Transporte, Marketing\n    fornecedor: Empresa que forneceu aquele material ou serviço\n    metodo_pagamento: Pode ser uma das 4 opções: Cartao de Credito, Boleto, Cartao de Debito, Pix\n    valor: Valor da Despesa\n  \n    Se não for informado o tipo da despesa, você precisa classificá-la de forma automática baseado no contexto da mensagem. \n    Confirme as informações com o usuário antes de chamar a ferramenta e rodar o processo de adicionar despesas.\n\n  2.Consultar Despesas (consultar_despesas):\n    Essa ferramenta deve ser utilizada sempre que o usuário solicitar informações sobre as despesas registradas. \n    Ela permite filtrar, analisar e consolidar os dados financeiros de acordo com diferentes critérios, como categoria, fornecedor, método de pagamento ou até mesmo períodos específicos.\n\n  3.Atualizar Despesas (atualizar_despesas):\n    Essa ferramenta deve ser chamada quando o usuário solicitar uma alteração em algum das despesas da tabela. Qualquer tipo de edição solicitada em uma despesa, você deve utilizar essa ferramenta.\n    Informação obrigatória para ativar essa ferramenta:\n    ordem_de_compra: Ordem de compra da despesa.\n    Para evitar erros, utilize a ferramenta consultar_despesas para confirmar a existência daquela ordem de compra.\n    Após o usuário informar a ordem de compra, você deve perguntar qual a informação daquela linha que ele quer alterar. Essa informação que vai ser alterada pode ser: ordem de compra, data da despesa, categoria, fornecedor, metodo de pagamento ou valor.\n    Quando o usuário informar qual é alteração desejada, você deve trocar a informação que estava antes por essa nova informação fornecida por ele. Antes de fazer a alteração solicitada, confirme com o usuário qual seria a alteração.\n    Após você fazer a alteração na base de dados, exiba as informações dessa despesa para o usuário.\n\n  4.Remover Despesas (remover_despesas):\n      Essa ferramente deve ser utilizada quando o usuário solicitar para remover uma despesa do sistema.\n      Informação obrigatória para ativar essa ferramenta:\n    \tordem_de_compra: Ordem de compra da despesa.\n      Para evitar erros, utilize a ferramenta consultar_despesas para confirmar a existência daquela ordem de compra.\n      Confirme com o usuário antes de remover da tabela a linha referente a ordem de compra informada.\n      Após excluir essa despesa, informe para o usuário que a despesa foi removida com sucesso.\n\n  5. Somar Despesas (somar_despesas):\n      Essa ferramenta deve somar o total dos gastos de um fornecedor específico ou de uma categoria específica. Por exemplo, se o usuário quiser saber o total gasto com um determinado fornecedor, como Solux Tecnologia, você deve calcular a soma correta de todas as despesas associadas a esse fornecedor.\n"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        208,
+        0
+      ],
+      "id": "23db9d77-8595-4cfa-b245-11b742909156",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $json.message.chat.id }}",
+        "contextWindowLength": 10
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        224,
+        208
+      ],
+      "id": "35c1a120-da3f-4fb2-b6bc-252cc7e91738",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        80,
+        208
+      ],
+      "id": "4033e507-4650-4662-976b-8ea6c179e3b2",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "NbRKeA7nxyktlvTV",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "tableId": "Empresa",
+        "returnAll": true
+      },
+      "type": "n8n-nodes-base.supabaseTool",
+      "typeVersion": 1,
+      "position": [
+        592,
+        208
+      ],
+      "id": "f9693e68-258a-4062-85e7-276fe0ffb40b",
+      "name": "consultar_despesas",
+      "credentials": {
+        "supabaseApi": {
+          "id": "fzkMcMBWpfPEJ3Es",
+          "name": "Assistente_Financeiro"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "tableId": "Empresa",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "ordem_de_compra",
+              "fieldValue": "={{ $fromAI(\"ordem_de_compra\") }}"
+            },
+            {
+              "fieldId": "data_despesa",
+              "fieldValue": "={{ $fromAI(\"data_despesa\") }}"
+            },
+            {
+              "fieldId": "categoria",
+              "fieldValue": "{{ $fromAI(\"categoria\") }}"
+            },
+            {
+              "fieldId": "fornecedor",
+              "fieldValue": "={{ $fromAI(\"fornecedor\") }}"
+            },
+            {
+              "fieldId": "metodo_pagamento",
+              "fieldValue": "={{ $fromAI(\"metodo_pagamento\") }}"
+            },
+            {
+              "fieldId": "valor",
+              "fieldValue": "={{ $fromAI(\"valor\") }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabaseTool",
+      "typeVersion": 1,
+      "position": [
+        432,
+        208
+      ],
+      "id": "37395f7d-34af-415e-85df-bb9f0ef0ae23",
+      "name": "adicionar_despesas",
+      "credentials": {
+        "supabaseApi": {
+          "id": "fzkMcMBWpfPEJ3Es",
+          "name": "Assistente_Financeiro"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "tableId": "Empresa",
+        "matchType": "allFilters",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "ordem_de_compra",
+              "condition": "eq",
+              "keyValue": "={{ $fromAI(\"ordem_de_compra\") }}"
+            }
+          ]
+        },
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "ordem_de_compra",
+              "fieldValue": "={{ $fromAI(\"ordem_de_compra\") }}"
+            },
+            {
+              "fieldId": "data_despesa",
+              "fieldValue": "={{ $fromAI(\"data_despesa\") }}"
+            },
+            {
+              "fieldId": "categoria",
+              "fieldValue": "={{ $fromAI(\"categoria\") }}"
+            },
+            {
+              "fieldId": "fornecedor",
+              "fieldValue": "={{ $fromAI(\"fornecedor\") }}"
+            },
+            {
+              "fieldId": "metodo_pagamento",
+              "fieldValue": "={{ $fromAI(\"metodo_pagamento\") }}"
+            },
+            {
+              "fieldId": "valor",
+              "fieldValue": "={{ $fromAI(\"valor\") }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabaseTool",
+      "typeVersion": 1,
+      "position": [
+        752,
+        208
+      ],
+      "id": "33735c04-3e64-46fd-be71-7e0e120aa5c1",
+      "name": "atualizar_despesas",
+      "credentials": {
+        "supabaseApi": {
+          "id": "fzkMcMBWpfPEJ3Es",
+          "name": "Assistente_Financeiro"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "delete",
+        "tableId": "Empresa",
+        "matchType": "allFilters",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "ordem_de_compra",
+              "condition": "eq",
+              "keyValue": "={{ $fromAI(\"ordem_de_compra\") }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabaseTool",
+      "typeVersion": 1,
+      "position": [
+        912,
+        208
+      ],
+      "id": "66c31dbb-78da-4c4e-bd53-86e931b3b459",
+      "name": "remover_despesas",
+      "credentials": {
+        "supabaseApi": {
+          "id": "fzkMcMBWpfPEJ3Es",
+          "name": "Assistente_Financeiro"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.toolCalculator",
+      "typeVersion": 1,
+      "position": [
+        1056,
+        208
+      ],
+      "id": "fd12f9ba-c898-495a-b71a-835a245aee67",
+      "name": "somar_despesas"
+    },
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "001db65b-6f7a-456d-b45a-63b07d73e49f",
+      "name": "Mensagem Recebida",
+      "webhookId": "e4a03be1-eae3-438a-9431-5b6666d74c8b",
+      "credentials": {
+        "telegramApi": {
+          "id": "C7m5GelUEVWLdZNm",
+          "name": "Assistente Financeiro"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Mensagem Recebida').item.json.message.chat.id }}",
+        "text": "={{ $json.output }}",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        560,
+        0
+      ],
+      "id": "0274c221-7723-4169-bf56-d4a6ffa6401c",
+      "name": "Mensagem Enviada",
+      "webhookId": "66dafbee-1f73-4058-92b6-1c9bc7aaefd7",
+      "credentials": {
+        "telegramApi": {
+          "id": "C7m5GelUEVWLdZNm",
+          "name": "Assistente Financeiro"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "consultar_despesas": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "adicionar_despesas": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "atualizar_despesas": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "remover_despesas": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "somar_despesas": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mensagem Recebida": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Mensagem Enviada",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "1ce6a181-6d48-4739-97ee-c4bdc26ee39c",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "03385ba5babd29cede04c5937ac6612d3eb2d7a53874c596ded4e9ada708be14"
+  },
+  "id": "GBpoxZg5g1JA6Gts",
+  "tags": []
+}
