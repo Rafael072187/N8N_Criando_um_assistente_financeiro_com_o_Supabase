@@ -1,4 +1,4 @@
-<center> <h1 style="font-size:2.4em; margin-bottom:0.1em;">💰 N8N — Assistente Financeiro com Supabase</h1> <p style="margin-top:0.2em; font-size:1.05em; color:#555;"> Automação financeira inteligente com <b>n8n</b>, <b>Supabase</b>, <b>IA Google Gemini</b> e <b>Telegram</b> — controle de despesas corporativas em tempo real. </p> <p> <a href="https://github.com/Rafael072187/N8N_Criando_um_assistente_financeiro_com_o_Supabase" style="background:#24292F;color:#fff;padding:8px 14px;border-radius:8px; text-decoration:none;font-weight:600;"> 🔗 Repositório no GitHub </a> </p> </center> <p align="center" style="margin-top:8px;"> <a href="https://github.com/Rafael072187/N8N_Criando_um_assistente_financeiro_com_o_Supabase/blob/main/imagem/01.PNG" target="_blank" style="background:#0b5fff;color:#fff;padding:8px 14px;border-radius:8px; text-decoration:none;font-weight:600;"> 📷 Ver imagem 01 </a> </p> <hr>
+<center> <h1 style="font-size:2.4em; margin-bottom:0.1em;">💰 N8N — Assistente Financeiro com Supabase</h1> <p style="margin-top:0.2em; font-size:1.05em; color:#555;"> Automação financeira inteligente com <b>n8n</b>, <b>Supabase</b>, <b>IA Google Gemini</b> e <b>Telegram</b> — controle de despesas corporativas em tempo real. </p> <p> <a href="https://github.com/Rafael072187/N8N_Criando_um_assistente_financeiro_com_o_Supabase" style="background:#24292F;color:#fff;padding:8px 14px; border-radius:8px;text-decoration:none;font-weight:600;"> 🔗 Repositório no GitHub </a> </p> </center> <hr>
 🧭 Tabela de Conteúdos
 
 Descrição
@@ -65,7 +65,7 @@ Interaja com o bot no Telegram:
 As mensagens são processadas pela IA (Gemini), classificadas e gravadas no Supabase.
 O sistema responde em tempo real com feedback e relatórios automáticos.
 
-</details> <div align="center" style="overflow-x:auto; white-space:nowrap; padding:10px;"> <a href="https://github.com/Rafael072187/N8N_Criando_um_assistente_financeiro_com_o_Supabase/blob/main/imagem/02.PNG" target="_blank" style="background:#0b5fff;color:#fff;padding:8px 14px;border-radius:8px; text-decoration:none;font-weight:600;display:inline-block;margin:4px;">📷 02</a> <a href="https://github.com/Rafael072187/N8N_Criando_um_assistente_financeiro_com_o_Supabase/blob/main/imagem/03.PNG" target="_blank" style="background:#0b5fff;color:#fff;padding:8px 14px;border-radius:8px; text-decoration:none;font-weight:600;display:inline-block;margin:4px;">📷 03</a> </div>
+</details> <p align="center" style="margin-top:8px;"> <a href="https://github.com/Rafael072187/N8N_Criando_um_assistente_financeiro_com_o_Supabase/blob/main/imagem/01.PNG" target="_blank" style="background:#0b5fff;color:#fff;padding:8px 14px;border-radius:8px; text-decoration:none;font-weight:600;"> 📷 Ver imagem </a> </p>
 🛠️ Tecnologias
 <details> <summary><b>Stack principal</b></summary> - n8n — Plataforma de automação - Google Gemini — IA de interpretação e categorização - Supabase — Banco de dados e autenticação - Telegram Bot API — Comunicação com o usuário - CSV / Excel — Base auxiliar de despesas </details>
 🤝 Como contribuir
@@ -94,13 +94,3 @@ Abra um Pull Request explicando sua contribuição.
 ⚠️ Proteja suas credenciais antes de implantar publicamente.
 
 <p align="center" style="margin-top:18px;"> <a href="https://github.com/Rafael072187/N8N_Criando_um_assistente_financeiro_com_o_Supabase" style="background:#0b5fff;color:#fff;padding:10px 18px; border-radius:8px;text-decoration:none;font-weight:600;"> Ver repositório </a> </p> <p align="center" style="margin-top:14px;color:#666;"> Estrutura gerada automaticamente com base no repositório analisado. </p>
-
-✅ Ajustes feitos:
-
-Substituí {REPO_URL} pelos links reais para evitar 404.
-
-Mantive a variável REPO_URL como referência informativa no topo.
-
-Mantive todo o visual padronizado, com HTML + Markdown.
-
-O README agora é 100% funcional e renderiza corretamente no GitHub.
